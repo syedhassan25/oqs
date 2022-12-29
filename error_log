@@ -1,0 +1,41 @@
+[09-Oct-2020 03:46:04 Asia/Tashkent] PHP Warning:  Uncaught ErrorException: var_export does not handle circular references in /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php:223
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'var_export does...', '/home3/ffx9zcpy...', 223, Array)
+#1 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php(223): var_export(Array, true)
+#2 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php(174): Illuminate\Log\Logger->formatMessage(Array)
+#3 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php(123): Illuminate\Log\Logger->writeLog('info', Array, Array)
+#4 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(544): Illuminate\Log\Logger->info(Array, Array)
+#5 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.ph in /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php on line 223
+[09-Oct-2020 03:46:04 Asia/Tashkent] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 199233536 bytes) in /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php on line 223
+[09-Oct-2020 03:47:05 Asia/Tashkent] PHP Warning:  Uncaught ErrorException: var_export does not handle circular references in /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php:223
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'var_export does...', '/home3/ffx9zcpy...', 223, Array)
+#1 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php(223): var_export(Array, true)
+#2 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php(174): Illuminate\Log\Logger->formatMessage(Array)
+#3 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php(123): Illuminate\Log\Logger->writeLog('info', Array, Array)
+#4 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(544): Illuminate\Log\Logger->info(Array, Array)
+#5 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.ph in /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php on line 223
+[09-Oct-2020 03:47:05 Asia/Tashkent] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 199233536 bytes) in /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php on line 223
+[09-Oct-2020 03:48:04 Asia/Tashkent] PHP Warning:  Uncaught ErrorException: var_export does not handle circular references in /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php:223
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'var_export does...', '/home3/ffx9zcpy...', 223, Array)
+#1 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php(223): var_export(Array, true)
+#2 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php(174): Illuminate\Log\Logger->formatMessage(Array)
+#3 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php(123): Illuminate\Log\Logger->writeLog('info', Array, Array)
+#4 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(544): Illuminate\Log\Logger->info(Array, Array)
+#5 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.ph in /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php on line 223
+[09-Oct-2020 03:48:04 Asia/Tashkent] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 199233536 bytes) in /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php on line 223
+[09-Oct-2020 03:49:05 Asia/Tashkent] PHP Warning:  Uncaught ErrorException: var_export does not handle circular references in /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php:223
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'var_export does...', '/home3/ffx9zcpy...', 223, Array)
+#1 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php(223): var_export(Array, true)
+#2 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php(174): Illuminate\Log\Logger->formatMessage(Array)
+#3 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php(123): Illuminate\Log\Logger->writeLog('info', Array, Array)
+#4 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(544): Illuminate\Log\Logger->info(Array, Array)
+#5 /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.ph in /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php on line 223
+[09-Oct-2020 03:49:05 Asia/Tashkent] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 199233536 bytes) in /home3/ffx9zcpy/panel.sispn.net/project/vendor/laravel/framework/src/Illuminate/Log/Logger.php on line 223
+[27-Oct-2020 16:36:42 America/Chicago] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home3/ffx9zcpy/panel.sispn.net/project/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[16-Feb-2021 03:10:06 America/Chicago] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home3/ffx9zcpy/panel.sispn.net/project/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[08-Oct-2021 17:19:52 America/Chicago] PHP Fatal error:  Out of memory (allocated 799277056) (tried to allocate 128 bytes) in phar:///home3/ffx9zcpy/composer.phar/src/Composer/Json/JsonFile.php on line 288
+[08-Oct-2021 17:25:56 America/Chicago] PHP Fatal error:  Out of memory (allocated 800063488) (tried to allocate 32 bytes) in phar:///home3/ffx9zcpy/composer.phar/src/Composer/Json/JsonFile.php on line 288
+[13-Oct-2021 22:37:49 Asia/Tashkent] PHP Fatal error:  Cannot use App\Mail as Mail because the name is already in use in /home3/ffx9zcpy/panel.sispn.net/project/app/Console/Commands/TestReminderCommand.php on line 8

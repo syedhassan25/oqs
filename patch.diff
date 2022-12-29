@@ -1,0 +1,31 @@
+From de22b189ce13e6fb86c6eb9ce299b040e5301e5c Mon Sep 17 00:00:00 2001
+From: syedhassan25 <syedhassan25@hotmail.com>
+Date: Wed, 8 Jun 2022 02:01:49 +0500
+Subject: [PATCH] Fix Conflicts
+
+---
+ app/Http/Controllers/PackagesController.php | 8 --------
+ 1 file changed, 8 deletions(-)
+
+diff --git a/app/Http/Controllers/PackagesController.php b/app/Http/Controllers/PackagesController.php
+index 77c4ce7..3c4eb2f 100644
+--- a/app/Http/Controllers/PackagesController.php
++++ b/app/Http/Controllers/PackagesController.php
+@@ -60,14 +60,6 @@ class PackagesController extends BaseController
+ 
+         })
+         ->rawColumns(['action', 'image'])
+-<<<<<<< HEAD
+-        ->editColumn('currency', function(Package $Package) {
+-            $data = Country::where('id', $Package->currency)->first();
+-            
+-            return $data->currency;
+-        })
+-=======
+->>>>>>> 1e41cb9ac48617592f2f51c3542d115c8ecbb9d2
+         ->make(true);
+     }
+     function delete($id){
+-- 
+2.36.1.windows.1
+
