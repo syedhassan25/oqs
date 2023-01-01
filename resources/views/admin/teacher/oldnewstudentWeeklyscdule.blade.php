@@ -1,16 +1,67 @@
 @extends('admin.app')
 @section('title') {{ $pageTitle }} @endsection
 @section('content')
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="{{ asset('assets/weeklyscdule/dist/jquery.schedule.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/weeklyscdule/dist/jquery.schedule-demo.css') }}">
     <link href="{{ asset('assets/widgets/select2/select2.min.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/easycal/easycal.css') }}">
 <style>
     
-.ec-time-range{
-    padding-bottom:0 !important
+    
+    .schedule-rows td {
+  width: 80px;
+  height: 30px;
+  margin: 3px;
+  padding: 5px;
+  background-color: #3498DB;
+  cursor: pointer;
+  border:1px solid #fff;
 }
-    
-    
- 
+
+.schedule-rows td:first-child {
+  background-color: transparent;
+  text-align: right;
+  position: relative;
+  top: -12px;
+}
+
+.schedule-rows td[data-selected],
+.schedule-rows td[data-selecting] { background-color: #E74C3C; }
+
+.schedule-rows td[data-disabled] { opacity: 0.55; }
+
+
+
+
+.active10 {
+        color: blue;
+  }
+.active15 {
+    color: blueviolet;
+}
+.active20 {
+    color:chartreuse;
+}
+.active30 {
+    color:cyan;
+}
+.active45 {
+    color:deeppink;
+}
+.active60 {
+    color: gold;
+}
+
+.jqs-demo {
+    height: 1200px !important;
+}
+
+.jqs-period-time {
+    cursor: pointer !important;
+}
 
 </style>
 
@@ -54,7 +105,7 @@
                                 <br/>
     <div class="row">
           <div class="col-lg-12">
-          <div class="mycal" style="width:100%;"></div>
+            <div id="schedule5" class="jqs-demo mb-3"></div>
           </div>
          
         </div>
@@ -74,15 +125,12 @@
 @endsection
 @push('scripts')
 
+ 
+   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+   <script src="{{ asset('assets/weeklyscdule/dist/jquery.schedule.js') }}"></script>
+   <script src="{{ asset('assets/widgets/select2/select2.full.min.js') }}" defer></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
 
-
-
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
-    <script src="{{ asset('assets/widgets/select2/select2.full.min.js') }}" defer></script>
-    <script type="text/javascript" src="{{ asset('assets/easycal/easycal.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/easycal/dataset.js') }}"></script>
 
 <script>
 
@@ -106,37 +154,14 @@ $(function () {
     
     console.log(JSON.parse("{{json_encode($scduledata)}}".replace(/&quot;/g,'"')))
     
-    $('.mycal').easycal({
-			
-			timeFormat : 'hh:mm',
-			columnDateFormat : 'dddd, DD MMM',
-			minTime : '00:00:00',
-			maxTime : '24:00:00',
-			slotDuration : 30,
-			timeGranularity : 15,
-			
-			dayClick : function(el, startTime){
-				console.log('Slot selected: ' + startTime);
-			},
-			eventClick : function(eventId){
-				console.log('Event was clicked with id: ' + eventId);
-                var arr = eventId.split("-");
-                var id  = arr[0];
-                var route = '{{ route("admin.student.edit", ":id") }}';
-                route = route.replace(':id', id);
-                // window.location.href = route;
-                
-                window.open(route, '_blank');
-
-			},
-
-			events : JSON.parse("{{json_encode($scduledata)}}".replace(/&quot;/g,'"')),
-			
-			overlapColor : '#FF0',
-			overlapTextColor : '#000',
-			overlapTitle : 'Multiple'
-		});
-
+     $('#schedule5').jqs({
+      mode: 'read',
+      days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      hour: 12,
+      periodDuration: 15,
+      periodOptions: false,
+      data: JSON.parse("{{json_encode($scduledata)}}".replace(/&quot;/g,'"')),
+    });
     
     
     
@@ -189,7 +214,62 @@ $(function () {
     
     
    
-   
+    // $('#schedule5').jqs({
+    //   mode: 'read',
+    //   days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    //   hour: 12,
+    //   periodDuration: 15,
+    //   periodOptions: false,
+    //   data: [
+    //     {
+    //       day: 0,
+    //       periods: [
+    //      {
+    //       start: '2:00am',
+    //       end: '2:30am',
+    //       title: 'A black period',
+    //       backgroundColor: '#000',
+    //       borderColor: '#000',
+    //       textColor: '#fff'
+    //      },
+    //      {
+    //       start: '2:30am',
+    //       end: '3:00am',
+    //       title: 'A Studen period',
+    //       backgroundColor: 'red',
+    //       borderColor: '#fff',
+    //       textColor: '#ccc'
+    //      },
+    //      {
+    //       start: '3:00am',
+    //       end: '3:30am',
+    //       title: 'A black period',
+    //       backgroundColor: 'green',
+    //       borderColor: '#000',
+    //       textColor: '#fff'
+    //      },
+    //      {
+    //       start: '3:30am',
+    //       end: '3:45am',
+    //       title: 'A Studen period',
+    //       backgroundColor: 'yellow',
+    //       borderColor: '#fff',
+    //       textColor: '#ccc'
+    //      }
+    //       ]
+    //     }, {
+    //       day: 1,
+    //       periods: [
+    //         ['1:45am', '5:15am']
+    //       ]
+    //     }, {
+    //       day: 2,
+    //       periods: [
+    //         ['2', '2p'] // Compact 12 hour
+    //       ]
+    //     }
+    //   ]
+    // });
 });
 </script>
 @endpush

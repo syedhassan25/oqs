@@ -955,12 +955,14 @@ class TeacherController extends BaseController
     {
         $this->setPageTitle('Schdule', 'Student weekly Schdule');
         $scduledata = $this->LoadscduleCalenderByTeacher($id);
+
+        // return $scduledata;
         $Employee = Employee::Select(['employees.*'])->leftjoin('users', 'users.id', '=', 'employees.user_id')
             ->where('users.status', 1)->where('employees.role_type', 'teacher')->get();
         return view('admin.teacher.newstudentWeeklyscdule', compact('Employee', 'scduledata', 'id'));
     }
 
-    public function Studentscdule($id)
+    public function OldStudentscdule($id)
     {
 
         $data = [];
@@ -974,7 +976,7 @@ class TeacherController extends BaseController
                 ->leftjoin('countries', 'student.country', '=', 'countries.id')
                 ->where('student_days.teacher_id', $id)->where('student_days.day_no', $daynum)
                 ->whereRaw("(student.academicStatus = 1 || student.academicStatus = 8 )")
-                ->orderby('student_days.local_time', 'asc')->get();
+                ->orderby('student_days.local_time', 'asc')->limit(1)->get();
 
             if (count($res) > 0) {
 
@@ -1174,6 +1176,152 @@ class TeacherController extends BaseController
 
                 $data[$d]['day'] = $d;
                 $data[$d]['periods'][] = $class;
+            }
+
+        }
+
+        return $data;
+
+    }
+
+    public function Studentscdule($id)
+    {
+
+        $data = [];
+        $groupdata = [];
+        for ($d = 0; $d <= 6; $d++) {
+
+            $daynum = $d + 1;
+
+            $res = DB::table('student_days')->select(['student_days.*', 'student.studentname', 'student.studentname', 'student.group', 'countries.CountryName'])
+                ->leftjoin('student', 'student_days.student_id', '=', 'student.id')
+                ->leftjoin('countries', 'student.country', '=', 'countries.id')
+                ->where('student_days.teacher_id', $id)->where('student_days.day_no', $daynum)
+                ->whereRaw("(student.academicStatus = 1 || student.academicStatus = 8 )")
+                ->orderby('student_days.local_time', 'asc')->get();
+
+            if (count($res) > 0) {
+
+                foreach ($res as $index => $val) {
+                    $duration = $val->day_duration;
+                    $addduration = strval("+$duration minutes");
+                    $start = DATE("h:ia", STRTOTIME($val->local_time));
+                    $slot = strtotime($addduration, strtotime($val->local_time));
+
+                    // $groupcolor  = $this->random_color_part();
+
+                    $groupcolor = $this->randomColor(150, 255);
+                    if (isset($groupdata[$val->group])) {
+
+                        $groupcolor = $groupdata[$val->group];
+
+                        // $groupcolor =  'found';
+                    } else {
+                        $groupdata[$val->group] = $groupcolor;
+
+                        // $groupcolor = "not found";
+                    }
+
+                    $end = date('h:ia', $slot);
+
+                    $studentstart = DATE("h:ia", STRTOTIME($val->student_time));
+                    $studentslot = strtotime($addduration, strtotime($val->student_time));
+                    $studentend = date('h:ia', $studentslot);
+
+                   
+
+                    $restime = "";
+                    $time24 = strtotime('24:00:00');
+                    $starttime = DATE("H:i:s", STRTOTIME($val->local_time));
+                    $starttimenew = STRTOTIME($val->local_time);
+                    if ($starttime <= $time24) {
+                        
+
+                            if ($starttimenew < $slot) {
+                                $starttimenew += 24 * 60 * 60;
+                            }
+                            //   $restime =  ($starttimenew - $slot) / 60;
+
+                            $date = date('Y-m-d');
+                            $localtime = $val->local_time;
+                            $localtimedate = date('Y-m-d H:i:s', strtotime("$date $localtime"));
+                            $localtimedatennew = date('Y-m-d H:i:s', strtotime($addduration, strtotime($localtimedate)));
+                            $localtimedate = date('Y-m-d', strtotime($localtimedate));
+                            $localtimedatennew = date('Y-m-d', strtotime($localtimedatennew));
+
+                            if($daynum == 1){
+                                $currentday = date( 'd-m-Y', strtotime( 'monday this week' ) );
+                            }elseif($daynum == 2){
+                                $currentday = date( 'd-m-Y', strtotime( 'tuesday this week' ) );
+                            }
+                            elseif($daynum == 3){
+                                $currentday = date( 'd-m-Y', strtotime( 'thursday this week' ) );
+                            }
+                            elseif($daynum == 4){
+                                $currentday = date( 'd-m-Y', strtotime( 'wednesday this week' ) );
+                            }
+                            elseif($daynum == 5){
+                                $currentday = date( 'd-m-Y', strtotime( 'friday this week' ) );
+                            }
+                            elseif($daynum == 6){
+                                $currentday = date( 'd-m-Y', strtotime( 'saturday this week' ) );
+                            }
+                            elseif($daynum == 7){
+                                $currentday = date( 'd-m-Y', strtotime( 'sunday this week' ) );
+                            }
+                            
+                            
+                           
+
+
+                            $class = array(
+                                'id' => $val->student_id.'-'.$daynum,
+                                'restime' => $restime,
+                                'startnew' => STRTOTIME($val->local_time),
+                                'endnew' => $slot,
+                                'start' => $currentday.' '.date("H:i:s", strtotime($start)),
+                                'end' => $currentday.' '.date("H:i:s", strtotime($end)),
+                                'title' => substr($this->clean($val->studentname), 0, 5) . ' ' . $val->group,
+                                'backgroundColor' => $groupcolor,
+                                'borderColor' => '#000',
+                                'textColor' => '#000',
+                                'studentid' => $val->student_id,
+                                'group' => $val->group,
+                                'CountryName' => $val->CountryName,
+                                'studentTime' => $studentstart . ' ' . $studentend,
+                                'studentid' => $val->student_id
+                            );
+
+                            
+                            $data[] = $class;
+
+                          
+
+                        
+                    }
+
+                    //   $data[$d]['periods']['group'] = $groupdata;
+
+                }
+
+            } else {
+
+                // $class = array(
+
+                //     'start' => '12:10 am',
+                //     'end' => '12:10 am',
+                //     'title' => 'none',
+                //     'backgroundColor' => '#DCF7E6',
+                //     'borderColor' => '#000',
+                //     'textColor' => '#000',
+                //     'studentid' => 0,
+                //     'group' => 0,
+                //     'CountryName' => 'no',
+                //     'studentTime' => '',
+                // );
+
+                // $data[$d]['day'] = $d;
+                // $data[$d]['periods'][] = $class;
             }
 
         }
