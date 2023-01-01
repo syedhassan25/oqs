@@ -8,8 +8,17 @@
 .ec-time-range{
     padding-bottom:0 !important
 }
+.easycal table.ec-head-table {
+   
+    background-color: bisque;
+}
     
-    
+.easycal table.ec-time-grid-table tr td .table-cell.ec-slot {
+    background-color: #e5ae5b;
+}
+.easycal table.ec-time-grid-table tr td .table-cell {
+    background-color: bisque;
+}
  
 
 </style>
