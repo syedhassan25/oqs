@@ -1193,7 +1193,7 @@ class TeacherController extends BaseController
 
             $daynum = $d + 1;
 
-            $res = DB::table('student_days')->select(['student_days.*', 'student.studentname', 'student.studentname', 'student.group', 'countries.CountryName'])
+            $res = DB::table('student_days')->select(['student_days.*', 'student.studentname', 'student.studentname', 'student.group', 'countries.CountryName','countries.CountryShortName'])
                 ->leftjoin('student', 'student_days.student_id', '=', 'student.id')
                 ->leftjoin('countries', 'student.country', '=', 'countries.id')
                 ->where('student_days.teacher_id', $id)->where('student_days.day_no', $daynum)
@@ -1281,7 +1281,7 @@ class TeacherController extends BaseController
                                 'endnew' => $slot,
                                 'start' => $currentday.' '.date("H:i:s", strtotime($start)),
                                 'end' => $currentday.' '.date("H:i:s", strtotime($end)),
-                                'title' => substr($this->clean($val->studentname), 0, 5) . ' ' . $val->group,
+                                'title' => substr($this->clean($val->studentname), 0, 5) . ' ' . $val->group.'('.substr(($val->CountryShortName) ? $val->CountryShortName : $val->CountryName,0,5).')',
                                 'backgroundColor' => $groupcolor,
                                 'borderColor' => '#000',
                                 'textColor' => '#000',
