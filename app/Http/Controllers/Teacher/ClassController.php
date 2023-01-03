@@ -38,9 +38,9 @@ class ClassController extends BaseController
             ->whereDate('studentattendance.created_at', Carbon::today());
             
         if($timeZoneChangeEuropeStatus){
-              $Class->whereRaw("date_format(studentattendance.attendance_date_time,'%Y-%m-%d %T')  BETWEEN  DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 630 MINUTE),'%Y-%m-%d %T')  AND DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 660+student.duration MINUTE),'%Y-%m-%d %T')");
+              $Class->whereRaw("date_format(studentattendance.attendance_date_time,'%Y-%m-%d %T')  BETWEEN  DATE_FORMAT(DATE_sub(NOW(),INTERVAL 215 MINUTE),'%Y-%m-%d %T')  AND DATE_FORMAT(DATE_sub(NOW(),INTERVAL 200+student.duration MINUTE),'%Y-%m-%d %T')");
         }else{
-              $Class->whereRaw("date_format(studentattendance.attendance_date_time,'%Y-%m-%d %T')  BETWEEN  DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 570 MINUTE),'%Y-%m-%d %T')  AND DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 600+student.duration MINUTE),'%Y-%m-%d %T')");
+              $Class->whereRaw("date_format(studentattendance.attendance_date_time,'%Y-%m-%d %T')  BETWEEN  DATE_FORMAT(DATE_sub(NOW(),INTERVAL 215 MINUTE),'%Y-%m-%d %T')  AND DATE_FORMAT(DATE_sub(NOW(),INTERVAL 200+student.duration MINUTE),'%Y-%m-%d %T')");
         }
 
        $Class->orderby('studentattendance.attdendance_time', 'asc');

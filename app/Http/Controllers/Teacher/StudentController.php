@@ -131,9 +131,9 @@ class StudentController extends BaseController
         //   ->whereRaw("date_format(studentattendance.attendance_date_time,'%Y-%m-%d %T')  BETWEEN  DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 570 MINUTE),'%Y-%m-%d %T')  AND DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 600+student.duration MINUTE),'%Y-%m-%d %T')")->get();
 
         if ($timeZoneChangeEuropeStatus) {
-            $teacherStudentclassesdata = $teacherStudentclassesdata->whereRaw("date_format(studentattendance.attendance_date_time,'%Y-%m-%d %T')  BETWEEN  DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 630 MINUTE),'%Y-%m-%d %T')  AND DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 660+student.duration MINUTE),'%Y-%m-%d %T')")->get();
+            $teacherStudentclassesdata = $teacherStudentclassesdata->whereRaw("date_format(studentattendance.attendance_date_time,'%Y-%m-%d %T')  BETWEEN  DATE_FORMAT(DATE_sub(NOW(),INTERVAL 215 MINUTE),'%Y-%m-%d %T')  AND DATE_FORMAT(DATE_sub(NOW(),INTERVAL 200+student.duration MINUTE),'%Y-%m-%d %T')")->get();
         } else {
-            $teacherStudentclassesdata = $teacherStudentclassesdata->whereRaw("date_format(studentattendance.attendance_date_time,'%Y-%m-%d %T')  BETWEEN  DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 570 MINUTE),'%Y-%m-%d %T')  AND DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 600+student.duration MINUTE),'%Y-%m-%d %T')")->get();
+            $teacherStudentclassesdata = $teacherStudentclassesdata->whereRaw("date_format(studentattendance.attendance_date_time,'%Y-%m-%d %T')  BETWEEN  DATE_FORMAT(DATE_sub(NOW(),INTERVAL 215 MINUTE),'%Y-%m-%d %T')  AND DATE_FORMAT(DATE_sub(NOW(),INTERVAL 200+student.duration MINUTE),'%Y-%m-%d %T')")->get();
         }
 
         $teacherStudentclasses = [];
@@ -153,9 +153,9 @@ class StudentController extends BaseController
             ->where('studentattendance.student_id', $id);
 
         if ($timeZoneChangeEuropeStatus) {
-            $teacherStudentclassesdata = $teacherStudentclassesdata->whereRaw("date_format(studentattendance.attendance_date_time,'%Y-%m-%d %T')  BETWEEN  DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 630 MINUTE),'%Y-%m-%d %T')  AND DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 660+student.duration MINUTE),'%Y-%m-%d %T')")->get();
+            $teacherStudentclassesdata = $teacherStudentclassesdata->whereRaw("date_format(studentattendance.attendance_date_time,'%Y-%m-%d %T')  BETWEEN  DATE_FORMAT(DATE_sub(NOW(),INTERVAL 215 MINUTE),'%Y-%m-%d %T')  AND DATE_FORMAT(DATE_sub(NOW(),INTERVAL 200+student.duration MINUTE),'%Y-%m-%d %T')")->get();
         } else {
-            $teacherStudentclassesdata = $teacherStudentclassesdata->whereRaw("date_format(studentattendance.attendance_date_time,'%Y-%m-%d %T')  BETWEEN  DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 570 MINUTE),'%Y-%m-%d %T')  AND DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 600+student.duration MINUTE),'%Y-%m-%d %T')")->get();
+            $teacherStudentclassesdata = $teacherStudentclassesdata->whereRaw("date_format(studentattendance.attendance_date_time,'%Y-%m-%d %T')  BETWEEN  DATE_FORMAT(DATE_sub(NOW(),INTERVAL 215 MINUTE),'%Y-%m-%d %T')  AND DATE_FORMAT(DATE_sub(NOW(),INTERVAL 200+student.duration MINUTE),'%Y-%m-%d %T')")->get();
         }
 
         if (count($teacherStudentclassesdata) > 0) {
