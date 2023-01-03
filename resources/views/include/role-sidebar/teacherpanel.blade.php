@@ -19,7 +19,7 @@
                     </a>
                 </li>
                 
-                 <li style="display:none" class="nav-item">
+                 <li  class="nav-item">
                     <a href="{{route('teacherpanel.students.schdule')}}" title="Admin Dashboard" class="nav-link">
                         <i class="nav-icon fas fa-tachometer"></i>
                         <p>
