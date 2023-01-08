@@ -3855,10 +3855,10 @@ class StudentController extends BaseController
                     $group = $this->Studentgroupgenerator();
                 }
 
-              
+                for ($count = 0; $count < count($name); $count++) {
                     $user = new User();
                     $user->email = 'student' . $this->getStudentGUIDnoHash() . '@sispn.com';
-                    $user->name = $name[0];
+                    $user->name = $name[$count];
                     $user->password = Hash::make('12345');
                     $user->role = 'student';
                     $user->save();
@@ -3868,7 +3868,7 @@ class StudentController extends BaseController
                     $Student = new Student();
                     $Student->user_id = $userid;
                     $Student->group = $group;
-                    $Student->studentname = $name[0];
+                    $Student->studentname = $name[$count];
                     $Student->country = $request->country;
                     $Student->fathername = $request->fathername;
                     $Student->studentemail = $request->email;
@@ -3901,20 +3901,15 @@ class StudentController extends BaseController
                         ]);
 
 
-                
+                    }
 
-                // if (!$Student) {
-                //     return response()->json([
-                //         'success' => 'Something Went Wrong.',
-                //         'alert' => 'error',
-                //     ]);
-                // }
+                }
 
                 return response()->json([
                     'success' => 'Student Added Successfully',
                     'alert' => 'success',
                 ]);
-            }
+            
 
         } catch (Exception $e) {
             return response()->json(['success' => 0, 'error' => $e->getMessage()], 500);
