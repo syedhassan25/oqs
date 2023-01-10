@@ -117,7 +117,7 @@ $(function () {
     
     $('.mycal').easycal({
 			
-			timeFormat : 'hh:mm',
+			timeFormat : 'hh:mm A',
 			columnDateFormat : 'dddd, DD MMM',
 			minTime : '00:00:00',
 			maxTime : '24:00:00',

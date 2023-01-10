@@ -140,10 +140,10 @@ class TeacherController extends BaseController
                                 $currentday = date( 'd-m-Y', strtotime( 'tuesday this week' ) );
                             }
                             elseif($daynum == 3){
-                                $currentday = date( 'd-m-Y', strtotime( 'thursday this week' ) );
+                                $currentday = date( 'd-m-Y', strtotime( 'wednesday this week' ) );
                             }
                             elseif($daynum == 4){
-                                $currentday = date( 'd-m-Y', strtotime( 'wednesday this week' ) );
+                                $currentday = date( 'd-m-Y', strtotime( 'thursday this week' ) );
                             }
                             elseif($daynum == 5){
                                 $currentday = date( 'd-m-Y', strtotime( 'friday this week' ) );
@@ -157,7 +157,7 @@ class TeacherController extends BaseController
                             
                             
                            
-
+                            $end =  ($end == '12:00am')? '24:00:00':date("H:i:s", strtotime($end));
 
                             $class = array(
                                 'id' => $val->student_id.'-'.$daynum,
@@ -165,7 +165,7 @@ class TeacherController extends BaseController
                                 'startnew' => STRTOTIME($val->local_time),
                                 'endnew' => $slot,
                                 'start' => $currentday.' '.date("H:i:s", strtotime($start)),
-                                'end' => $currentday.' '.date("H:i:s", strtotime($end)),
+                                'end' => $currentday.' '.$end,
                                 'title' => substr($this->clean($val->studentname), 0, 5) . ' ' . $val->group.'('.substr(($val->CountryShortName) ? $val->CountryShortName : $val->CountryName,0,5).')',
                                 'backgroundColor' => $groupcolor,
                                 'borderColor' => '#000',
